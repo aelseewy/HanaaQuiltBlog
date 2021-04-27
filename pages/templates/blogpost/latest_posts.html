@@ -1,0 +1,13 @@
+<ul>
+    {% for post in latest_posts %}
+    <li>
+        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                <div class="media mb-3">
+                  <div class="media-body ml-3">
+                    
+                    <p class="text-small text-muted line-height-sm mb-0">{{ post.snippet }}</p>
+                  </div>
+                </div>
+    </li>
+    {% endfor %}
+</ul>

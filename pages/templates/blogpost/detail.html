@@ -1,0 +1,184 @@
+{% extends 'blogpost/base.html' %}
+{% load social_share %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %} HanaaQuilt Blog | Detail {% endblock title %}
+{% block content %}
+    <section class="py-5">
+      <div class="container py-4">
+        <div class="row text-center">
+          <div class="col-lg-8 mx-auto"><a class="category-link mb-3 d-inline-block" href="#">{{ post.category }}</a>
+            <h1>{{ post.title }}</h1>
+            <p>{{ post.snippet }}</p>
+            <ul class="list-inline mb-5">
+              <li class="list-inline-item mx-2"><a class="text-uppercase text-muted reset-anchor" href="#">BY {{post.author.first_name}} {{post.author.last_name}}</a></li>
+              <li class="list-inline-item mx-2"><a class="text-uppercase text-muted reset-anchor" href="#">{{ post.publish }}</a></li>
+            </ul>
+          </div>
+        </div><img class="w-100 mb-5" src="{{ post.blog_photo.url }}" alt="...">
+        <div class="row">
+          <div class="col-lg-9">
+
+            <p class="mb-4">{{ post.body }}</p>
+            
+            <div class="row">
+              {% if post.blog_photo_1 %}
+                <div class="col-lg-6 mb-4"><a class="d-block" href="#" data-lightbox="post-images" title="Image one"><img class="img-fluid img-thumbnail" src="{{ post.blog_photo_1.url }}" alt=""></a></div>
+              {% endif %}
+              {% if post.blog_photo_2 %}
+                <div class="col-lg-6 mb-4"><a class="d-block" href="#" data-lightbox="post-images" title="Image two"><img class="img-fluid img-thumbnail" src="{{ post.blog_photo_2.url }}" alt=""></a></div>
+              {% endif %}
+            </div>
+
+								<iframe id="ytplayer" type="text/html" width="720" height="405"
+                                src="{{ post.youtube_link }}"
+                                frameborder="0" allowfullscreen> </iframe>
+
+            <blockquote class="blockquote bg-light p-4 p-lg-5 text-center mb-5">
+              <p class="h4 mb-4">Design is the fundamental soul of a human-made creation that ends up expressing itself in successive outer layers of the product or service.</p>
+              <footer class="blockquote-footer">
+                <cite title="Source Title">Steve Jobs</cite>
+              </footer>
+            </blockquote>
+
+            <!-- Post tags-->
+            <div class="d-flex align-items-center flex-column flex-sm-row mb-4 p-4 bg-light">
+              <h3 class="h4 mb-3 mb-sm-0">Tags</h3>
+              <ul class="list-inline mb-0 ml-0 ml-sm-3">
+                  {% for tag in post.tags.all %}
+
+                    <li class="list-inline-item my-1 mr-2"><a class="sidebar-tag-link" href="{% url 'home:post_list_by_tag' tag.slug %}">
+                    {{ tag.name }}</a>
+                    {% if not forloop.last %} {% endif %}
+                    </li>
+                  {% endfor %}
+              </ul>
+            </div>
+            <!-- Post share-->
+            <div class="d-flex align-items-center flex-column flex-sm-row mb-5 p-4 bg-light">
+              <h3 class="h4 mb-3 mb-sm-0">Share this post</h3>
+              <ul class="list-inline mb-0 ml-0 ml-sm-3">
+              
+                <li class="list-inline-item mr-1 my-1"><a href="whatsapp://send?text=http://hanaaquilt.sewemall.com/" data-action="share/whatsapp/share">Share in Whatsapp</a></li>
+                <li class="list-inline-item mr-1 my-1"><a class="social-link-share facebook" href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri}}" target="_blank"><i class="fab fa-facebook-f mr-2"></i>Share</a></li>
+                <li class="list-inline-item mr-1 my-1"><a class="social-link-share email" href="{% url "home:post_share" post.id %}"><i class="fab fa-email-f mr-2"></i>Share</a></li>
+                <li class="list-inline-item mr-1 my-1"><iframe id="quilt" src="" width="83" height="28" style="border:none;overflow:hidden" scrolling="no"  frameborder="0" allowTransparency="true"></iframe></li>
+              </ul>
+            </div>
+            <!-- Leave comment-->
+            <h3 class="h4 mb-4">Leave a comment</h3>
+            <form class="mb-5" action="#" method="POST" novalidate>
+              {% csrf_token %}
+              <div class="row">
+                <div class="form-group col-lg-6">
+                          {{ comment_form.name|as_crispy_field }}
+                </div>
+                <div class="form-group col-lg-6">
+                          {{ comment_form.email|as_crispy_field }}
+
+                </div>
+                <div class="form-group col-lg-12">
+                        {{ comment_form.body|as_crispy_field }}
+                </div>
+                <div class="form-group col-lg-12">
+                  <button class="btn btn-primary" type="submit">Submit your comment</button>
+                </div>
+              </div>
+            </form>
+            <!-- Post comments-->
+
+            <h3 class="h4 mb-4">Comments</h3>
+            <ul class="list-unstyled comments">
+              {% for comment in comments %}
+              <li>
+                <div class="media mb-4"><img class="rounded-circle shadow-sm img-fluid" src="img/person-1.jpg" alt="" width="60">
+                  <div class="media-body ml-3">
+                    <p class="small mb-0 text-primary">{{ comment.created }}</p>
+                    <h5>{{ comment.name }}</h5>
+                    <p class="text-muted text-small mb-2">{{ comment.body|linebreaks }}</p>
+                    <a class="reset-anchor text-small" data-toggle="modal" data-target="#replyModal" href="#"><i class="fas fa-share mr-2 text-primary"></i><strong>Reply</strong></a>
+                  </div>
+                </div>
+                <ul class="list-unstyled ml-5">
+                  {% for replay in comment.replies.all %}
+                  <li> 
+                    <div class="media mb-4"><img class="rounded-circle shadow-sm img-fluid" src="img/person-2.jpg" alt="" width="60">
+                      <div class="media-body ml-3">
+                        <p class="small mb-0 text-primary">{{ replay.created }}</p>
+                        <h5>{{ replay.name }}</h5>
+                        <p class="text-muted text-small mb-2">{{ replay.body|linebreaks }}</p>
+                        <a class="reset-anchor text-small" data-toggle="modal" data-target="#replyModal" href="#"><i class="fas fa-share mr-2 text-primary"></i><strong>Reply</strong></a>
+                      </div>
+                    </div>
+                  </li>
+                  {% endfor %}
+                     <div class="modal fade" id="replyModal" role="dialog">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="contact-dealer modal-header">
+                            <!-- <h5 class="modal-title" id="inquiryModalLabel">Contact Dealer</h5> -->
+                            <button type="button" class="close" data-dismiss="modal">
+                              <span>&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form action="" method="POST">
+                              {% csrf_token %}
+
+                                <div class="form-group">
+                                  <label for="name" class="col-form-label">Hello,</label>
+                                  <div class="row">
+                                    <div class="col">
+                                        {{ comment_form.name|as_crispy_field }}
+                                    </div>
+                                    <div class="col">
+                                        {{ comment_form.email|as_crispy_field }}
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  {{ comment_form.body|as_crispy_field }}
+                                </div>
+                                <hr>
+                                <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                                <input type="submit" value="Send" class="btn btn-block btn-danger">
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                </ul>
+              </li>
+              {% empty %}
+                <h4>There are no comments yet.</h4>
+              {% endfor %}
+            </ul>
+
+              <section class="py-5">
+                <div class="container py-4">
+                  <div class="row">
+                    <!-- Blog listing-->
+                    <div class="col-lg-12 mb-5 mb-lg-0">
+                      <div class="row">
+                        {% for post in similar_posts %}
+                        <div class="col-lg-6 mb-5"><a class="d-block post-trending mb-4" href="{{ post.get_absolute_url }}"><img class="img-fluid w-100" src="{{ post.blog_photo.url }}" alt=""/></a>
+                          <ul class="list-inline">
+                            <li class="list-inline-item mr-2"><a class="category-link font-weight-normal" href="{{ post.category.get_absolute_url }}">{{ post.category }}</a></li>
+                            <li class="list-inline-item mx-2"><a class="text-uppercase meta-link font-weight-normal" href="#">{{ post.author.first_name }} {{ post.author.last_name }}</a></li>
+                            <li class="list-inline-item mx-2"><a class="text-uppercase meta-link font-weight-normal" href="#">{{ post.created}}</a></li>
+                          </ul>
+                          <h2 class="h3 mb-4"> <a class="d-block reset-anchor" href="{{ post.get_absolute_url }}">{{ post.snippet }}</a></h2>
+                        </div>
+                        {% empty %}
+                        There are no similar posts yet.
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+
+{% endblock %}

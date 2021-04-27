@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Butler_Light
+font link: http://fabiandesmet.com/portfolio/butler-font/
+font author: Fabian De Smet
+font author site: http://fabiandesmet.com/
+Slogan Font: Aleo-Light.otf
+
+icon designer: Amy Schwartz
+icon designer link: /amyschwartz
+        
+{"bg":"transparent","font":"#000000","icon-gradient-0":"#EA1F59","icon-gradient-1":"#FA9169","slogan":"#141414"}
+      

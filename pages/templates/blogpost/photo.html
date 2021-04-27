@@ -1,0 +1,26 @@
+{% extends 'blogpost/base3.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load blog_tags %}
+{% block content %}
+<section class="py-5">
+    <div class="container py-4">
+
+        <div class="row text-center">
+            <div class="col-lg-8 mx-auto">
+
+                <a href="{% url 'home:gallery' %}" class="btn btn-dark my-3">Go Back</a>
+
+                <div  class="text-center" style="height: 90vh;">
+                  <figure class="figure">
+                    <img style="max-width: 100%; max-height: 100%;" src="{{photo.image.url}}" class="figure-img img-fluid rounded" alt="...">
+                    <figcaption class="figure-caption text-end">{{ photo.category.name }}}</figcaption>
+                    </figure>
+                    <p>{{photo.description|markdown}}</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
