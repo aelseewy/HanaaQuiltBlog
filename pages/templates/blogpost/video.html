@@ -1,0 +1,18 @@
+{% extends 'blogpost/base3.html' %}
+{% load static %}
+{% load embed_video_tags %}
+
+{% block title %} HanaaQuilt Blog | {{ categories.title }}{% endblock title %}
+{% block content %}
+
+<h1 class="text-center"> HanaaQuilt Videos </h1>
+
+
+<div class="container">
+    {% for i in obj %}
+        {% video i.video 'small' %}
+    {% endfor %}
+</div>
+
+<br/><br/>
+{% endblock %}

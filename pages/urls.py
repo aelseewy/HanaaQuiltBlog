@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import blog_category, gallery, Photo
+from .views import blog_category, gallery, Photo, video
 from .feeds import LatestPostsFeed
 from marketing.views import email_list_signup
 
@@ -12,6 +12,7 @@ urlpatterns = [
     path("category/<slug:category_slug>/", views.blog_category, name='categories'),
     path('photo/<str:pk>/', views.viewPhoto, name='photo'),
     path('gallery/', views.gallery, name='gallery'),
+    path('video/', views.video, name='video'),
     path('post_list/', views.post_list, name='post_list'),
     path('tag/<slug:tag_slug>',views.post_list, name='post_list_by_tag'),
     #path('post_list/',views.PostListView.as_view(), name='post_list'),

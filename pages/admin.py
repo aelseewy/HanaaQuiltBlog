@@ -1,8 +1,14 @@
 from django.contrib import admin
-from .models import Team, Post, Comment, Category, CategoryPhoto, Photo
+from .models import Team, Post, Comment, Category, CategoryPhoto, Photo, Item
 from django.utils.html import format_html
+from embed_video.admin import AdminVideoMixin
 
 # Register your models here.
+
+class MyModelAdmin(AdminVideoMixin, admin.ModelAdmin):
+    pass
+
+admin.site.register(Item, MyModelAdmin)
 
 class TeamAdmin(admin.ModelAdmin):
     def thumbnail(self, object):

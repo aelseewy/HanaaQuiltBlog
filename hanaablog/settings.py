@@ -34,6 +34,7 @@ SITE_ID = 1
 INSTALLED_APPS = [
 
     'phonenumber_field',
+    'embed_video',
     'django_social_share',
     'crispy_forms',
     'ckeditor',
@@ -75,6 +76,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'pages.context_processors.menu_categories',
                 
+
             ],
         },
     },
@@ -90,7 +92,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'hanaablog_data',
-        'USER': 'postgress',
+        'USER': 'postgres',
         'PASSWORD': 'Salamat',
         'HOST': 'localhost'
     }
@@ -170,8 +172,3 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MAILCHIMP_API_KEY ='995e9cf3f376d24b537178e46d4ffb82-us1'
 MAILCHIMP_DATA_CENTER='us1'
 MAILCHIMP_EMAIL_LIST_ID='6f58972d95'
-
-try:
-    from .local_settings import *
-except ImportError:
-    pass

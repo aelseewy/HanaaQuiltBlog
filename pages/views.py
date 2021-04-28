@@ -9,10 +9,16 @@ from django.http import HttpResponseRedirect
 from taggit.models import Tag
 from django.db.models import Count
 from marketing.forms import EmailSignupForm
-from .models import Photo, CategoryPhoto
+from .models import Photo, CategoryPhoto, Item
 # Create your views here.
 
 
+def video(request):
+    teams = Team.objects.all()
+    obj = Item.objects.all()
+    
+    return render(request, 'blogpost/video.html', { 'obj': obj, 'teams': teams})
+    
 def gallery(request):
     teams = Team.objects.all()
     category = request.GET.get('category')

@@ -5,6 +5,11 @@ from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from django.urls import reverse
 from taggit.managers import TaggableManager
+from embed_video.fields import EmbedVideoField
+
+
+class Item(models.Model):
+    video = EmbedVideoField()  # same like models.URLField()
 
 class Category(models.Model):
     title = models.CharField(max_length=250)
