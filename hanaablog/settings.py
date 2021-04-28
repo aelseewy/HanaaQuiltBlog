@@ -90,7 +90,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'hanaablog_data',
-        'USER': 'postgres',
+        'USER': 'postgress',
         'PASSWORD': 'Salamat',
         'HOST': 'localhost'
     }
@@ -170,3 +170,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MAILCHIMP_API_KEY ='995e9cf3f376d24b537178e46d4ffb82-us1'
 MAILCHIMP_DATA_CENTER='us1'
 MAILCHIMP_EMAIL_LIST_ID='6f58972d95'
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
