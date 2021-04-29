@@ -1,6 +1,6 @@
 {% extends 'blogpost/base.html' %}
 {% load social_share %}
-
+{% load embed_video_tags %}
 {% load crispy_forms_tags %}
 {% load static %}
 
@@ -20,19 +20,18 @@
         </div><img src="{{ post.blog_photo.url }}" class="img-fluid" height:auto; max-width:100%; alt="...">
         <div class="row">
           <div class="col-lg-9">
+
             <p class="mb-4">{{ post.body|safe }}</p>
+            
             <div class="row">
               {% if post.blog_photo_1 %}
                 <div class="col-lg-6 mb-4"><a class="d-block" href="#" data-lightbox="post-images" title="Image one"><img class="img-fluid img-thumbnail" src="{{ post.blog_photo_1.url }}" alt=""></a></div>
               {% endif %}
               {% if post.blog_photo_2 %}
-                <div class="col-lg-6 mb-4"><a class="d-block" href="#" data-lightbox="post-images" title="Image two"><img class="img-fluid img-thumbnail" src="{{ post.blog_photo_2.url }}" alt=""></a></div>
+                <div class="col-lg-6 mb-4"><a class="d-block" href="#" data-lightbox="post-images" title="Image two"><img class="img-fluid img-thumbnail" src="{{ post.blog_photo_2.url }}" alt="">{% video .video 'small' %}</a></div>
               {% endif %}
             </div>
-
-								<iframe id="ytplayer" type="text/html" width="720" height="405"
-                                src="{{ post.youtube_link }}"
-                                frameborder="0" allowfullscreen> </iframe>
+              <a class="d-block post-trending mb-4" href="">{% video post.video 'small' %}</a>
 
             <blockquote class="blockquote bg-light p-4 p-lg-5 text-center mb-5">
               <p class="h4 mb-4">Design is the fundamental soul of a human-made creation that ends up expressing itself in successive outer layers of the product or service.</p>

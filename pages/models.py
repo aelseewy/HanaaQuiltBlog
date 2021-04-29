@@ -9,8 +9,9 @@ from embed_video.fields import EmbedVideoField
 
 
 class Item(models.Model):
+    
     video = EmbedVideoField()  # same like models.URLField()
-
+    item_snippet = models.CharField(max_length=250, default="click to read the blog post ")
 class Category(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250, unique=True)
@@ -72,6 +73,7 @@ class Post(models.Model):
     blog_photo_1 = models.ImageField(upload_to='photos/blogs/', blank=True , null=True)
     blog_photo_2 = models.ImageField(upload_to='photos/blogs/', blank=True , null=True)
     blog_photo_3 = models.ImageField(upload_to='photos/blogs/', blank=True , null=True)
+    video = EmbedVideoField(blank=True, null=True)  # same like models.URLField()
     youtube_link = models.URLField(max_length=130, blank=True, null=True)
     url_link = models.URLField(max_length=130, blank=True, null=True)
     body = RichTextField(blank=True, null=True)
