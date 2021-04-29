@@ -105,7 +105,7 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'hanaablog_data',
-            'USER': 'postgress',
+            'USER': 'postgres',
             'PASSWORD': 'Salamat',
             'HOST': 'localhost',
             'PORT': '',
