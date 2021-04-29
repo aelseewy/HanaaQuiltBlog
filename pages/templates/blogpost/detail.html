@@ -17,12 +17,10 @@
               <li class="list-inline-item mx-2"><a class="text-uppercase text-muted reset-anchor" href="#">{{ post.publish }}</a></li>
             </ul>
           </div>
-        </div><img class="w-100 mb-5" src="{{ post.blog_photo.url }}" alt="...">
+        </div><img src="{{ post.blog_photo.url }}" class="img-fluid" height:auto; max-width:100%; alt="...">
         <div class="row">
           <div class="col-lg-9">
-
-            <p class="mb-4">{{ post.body }}</p>
-            
+            <p class="mb-4">{{ post.body|safe }}</p>
             <div class="row">
               {% if post.blog_photo_1 %}
                 <div class="col-lg-6 mb-4"><a class="d-block" href="#" data-lightbox="post-images" title="Image one"><img class="img-fluid img-thumbnail" src="{{ post.blog_photo_1.url }}" alt=""></a></div>
