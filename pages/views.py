@@ -16,8 +16,9 @@ from .models import Photo, CategoryPhoto, Item
 def video(request):
     teams = Team.objects.all()
     obj = Item.objects.all()
+    posts = Post.published.all()
     
-    return render(request, 'blogpost/video.html', { 'obj': obj, 'teams': teams})
+    return render(request, 'blogpost/video.html', { 'obj': obj, 'teams': teams, 'posts': posts})
     
 def gallery(request):
     teams = Team.objects.all()

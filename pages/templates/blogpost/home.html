@@ -2,6 +2,7 @@
 {% load blog_tags %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load embed_video_tags %}
 {% block title %} HanaaQuilt Blog | Home{% endblock title %}
 {% block content %}
     <section class="bg-white pb-5">
@@ -36,7 +37,11 @@
     <!-- Top categories-->
     <section class="pb-5">
       <div class="container pb-4">
-
+        <div class="row mb-5 pb-4">
+          <div class="col-lg-4 mb-4 mb-lg-0"><a class="category-block bg-center bg-cover" style="background: url(img/category-bg-1.jpg)" href="#"><span class="category-block-title">Interior Design</span></a></div>
+          <div class="col-lg-4 mb-4 mb-lg-0"><a class="category-block bg-center bg-cover" style="background: url(img/category-bg-2.jpg)" href="#"><span class="category-block-title">Fashion</span></a></div>
+          <div class="col-lg-4"><a class="category-block bg-center bg-cover" style="background: url(img/category-bg-3.jpg)" href="#"><span class="category-block-title">Tips &amp; Tricks</span></a></div>
+        </div>
             <div class="d-flex align-items-center flex-column flex-sm-row mb-4 p-4 bg-light">
               <h3 class="h4 mb-3 mb-sm-0">Tags</h3>
               <ul class="list-inline mb-0 ml-0 ml-sm-3">
