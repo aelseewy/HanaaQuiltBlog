@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--bmxgt7p*f=vj17b9%n-36@*5p9+)l+kr*p+*9808z3l4k*wbx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['207.154.253.58', 'sewemall.com', 'hanaaquilt.sewemall.com']
 
 SITE_ID = 1
 
@@ -92,7 +92,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'hanaablog_data',
-        'USER': 'postgres',
+        'USER': 'postgress',
         'PASSWORD': 'Salamat',
         'HOST': 'localhost'
     }
