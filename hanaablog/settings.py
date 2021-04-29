@@ -91,9 +91,9 @@ WSGI_APPLICATION = 'hanaablog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'hanaablog_data',
-        'USER': 'hanaablog',
+        'USER': 'postgres',
         'PASSWORD': 'Salamat',
         'HOST': 'localhost',
         'PORT': '',

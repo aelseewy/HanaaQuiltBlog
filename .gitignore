@@ -13,3 +13,6 @@ images
 /static
 /distribution
 pages/migrations/0001_initial.py
+hanaablog/settings.py
+pages/migrations/0002_auto_20210429_1839.py
+hanaablog/settings.py
