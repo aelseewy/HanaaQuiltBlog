@@ -89,7 +89,6 @@ WSGI_APPLICATION = 'hanaablog.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 if DEBUG:
-    
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -100,12 +99,11 @@ if DEBUG:
         }
     }
 else:
-    
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'hanaablog_data',
-            'USER': 'postgres',
+            'USER': 'postgress',
             'PASSWORD': 'Salamat',
             'HOST': 'localhost',
             'PORT': '',
